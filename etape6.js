@@ -27,6 +27,29 @@ app.get('/fichier', function (req, res) {
    });
 })
 
+app.get('/tableau', function (req, res) {
+   fs.readFile( __dirname + "/public/text/" + "collection_provinces.json", 'utf8', function (err, data) {
+       if (err) return console.log(err)
+
+       provinces = JSON.parse(data);
+       res.render('index.ejs', {data});
+   });
+})
+
+app.get('/collection',  (req, res) => {
+   console.log('la route route get / = ' + req.url)
+ 
+    var cursor = db.collection('provinces').find().toArray(function(err, resultat){
+       if (err) return console.log(err)
+    // renders index.ejs
+    // affiche le contenu de la BD
+    res.render('index.ejs', {provinces: resultat})//récupère les données du ul provinces
+
+    }) 
+    
+
+})
+
 app.get('/',  (req, res) => {
    console.log('la route route get / = ' + req.url)
  
@@ -60,6 +83,17 @@ if (err) return console.log(err)
  res.redirect('/')  // redirige vers la route qui affiche la collection
  })
 })
+
+//ajouter le contenu de collection_provinces dans la base de données provinces
+app.get('/ajouter-plusieurs', (req, res) => {
+fs.readFile( __dirname + "/public/text/" + "collection_provinces.json", 'utf8', function (err, data) {
+db.collection('provinces').insertMany(JSON.parse(data), (err, resultat) => {
+if (err) return console.log(err)
+ res.redirect('/')  // redirige vers la route qui affiche la collection
+
+  })//fin de insertMany
+ })//fin de readFile
+})//fin de ajouter-plusieurs
 
 //permet d'enregistrer les données entrées dans la base de données
 app.post('/provinces',  (req, res) => {

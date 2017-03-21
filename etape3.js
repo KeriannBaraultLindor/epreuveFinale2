@@ -27,7 +27,16 @@ app.get('/fichier', function (req, res) {
    });
 })
 
-app.get('/',  (req, res) => {
+app.get('/tableau', function (req, res) {
+   fs.readFile( __dirname + "/public/text/" + "collection_provinces.json", 'utf8', function (err, data) {
+       if (err) return console.log(err)
+
+       provinces = JSON.parse(data);
+       res.render('index.ejs', {data});
+   });
+})
+
+app.get('/collection',  (req, res) => {
    console.log('la route route get / = ' + req.url)
  
     var cursor = db.collection('provinces').find().toArray(function(err, resultat){
