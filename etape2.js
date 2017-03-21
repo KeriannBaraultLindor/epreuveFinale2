@@ -9,11 +9,11 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.static('public'))  // pour utiliser le dossier public
 app.use(bodyParser.json())  // pour traiter les données JSON
 
-app.get('/',  (req, res) => {
-    fs.readFile( __dirname + "/public/text/" + "collection_provinces.json", 'utf8', function (err, data) {
-       console.log( data );
-       res.render('index.ejs', {data})
-    });
+app.get('/tableau', function (req, res) {
+   fs.readFile( __dirname + "/public/text/" + "collection_provinces.json", 'utf8', function (err, data) {
+   	   provinces = JSON.parse(data);
+       res.render('index.ejs', JSON.stringify(provinces));
+   });
 })
 
 var server = app.listen(8081, function () {

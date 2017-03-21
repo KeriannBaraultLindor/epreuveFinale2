@@ -39,6 +39,17 @@ app.get('/',  (req, res) => {
     })
 })
 
+//ajouter une entrée
+app.get('/ajouter', (req, res) => {
+ var id = req.params.id
+ console.log(id)
+ db.collection('provinces').insertOne({"code":"QC","nom":"Québec","capital":Math.floor(Math.random() * 100) + 100, "_id": ObjectID(req.params.id)}, (err, resultat) => {
+
+if (err) return console.log(err)
+ res.redirect('/')  // redirige vers la route qui affiche la collection
+ })
+})
+
 //permet d'enregistrer les données entrées dans la base de données
 app.post('/provinces',  (req, res) => {
   db.collection('provinces').save(req.body, (err, result) => {
