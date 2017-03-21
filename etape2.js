@@ -11,8 +11,10 @@ app.use(bodyParser.json())  // pour traiter les données JSON
 
 app.get('/tableau', function (req, res) {
    fs.readFile( __dirname + "/public/text/" + "collection_provinces.json", 'utf8', function (err, data) {
+   	   if (err) return console.log(err)
+
    	   provinces = JSON.parse(data);
-       res.render('index.ejs', JSON.stringify(provinces));
+       res.render('index.ejs', {data});
    });
 })
 
