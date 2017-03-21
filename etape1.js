@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.static('public'))  // pour utiliser le dossier public
 app.use(bodyParser.json())  // pour traiter les données JSON
 
-app.get('/list', function (req, res) {
+app.get('/fichier', function (req, res) {
    fs.readFile( __dirname + "/public/text/" + "collection_provinces.json", 'utf8', function (err, data) {
        console.log( data );
        res.end(data);
