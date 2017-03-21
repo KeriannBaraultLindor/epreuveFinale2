@@ -30,11 +30,11 @@ app.get('/fichier', function (req, res) {
 app.get('/',  (req, res) => {
    console.log('la route route get / = ' + req.url)
  
-    var cursor = db.collection('adresse').find().toArray(function(err, resultat){
+    var cursor = db.collection('provinces').find().toArray(function(err, resultat){
        if (err) return console.log(err)
     // renders index.ejs
     // affiche le contenu de la BD
-    res.render('index.ejs', {adresse: resultat})//récupère les données du ul adresse
+    res.render('index.ejs', {provinces: resultat})//récupère les données du ul provinces
 
     }) 
     
@@ -42,8 +42,8 @@ app.get('/',  (req, res) => {
 })
 
 //permet d'enregistrer les données entrées dans la base de données
-app.post('/adresse',  (req, res) => {
-  db.collection('adresse').save(req.body, (err, result) => {
+app.post('/provinces',  (req, res) => {
+  db.collection('provinces').save(req.body, (err, result) => {
       if (err) return console.log(err)
       console.log('sauvegarder dans la BD')
       res.redirect('/')
