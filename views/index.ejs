@@ -12,8 +12,8 @@
   	  	<h2>Node.js, Express, MongoDB, EJS</h2>
   	  	<nav>
 
-  	  		<a href="#">1-Fichier</a>
-  	  		<a href="#">2-Provinces</a>
+  	  		<a href="http://localhost:8081/fichier">1-Fichier</a>
+  	  		<a href="http://localhost:8081/tableau">2-Provinces</a>
   	  		<a href="#">3-Collection</a>
   	  		<a href="#">4-Ajouter un document</a>
   	  		<a href="#">5-Détruire</a>
@@ -22,14 +22,11 @@
   	  </header>
   	  <main>
 		  <table class="tableau">
-        <% for(var i=0; i<adresse.length; i++) {%>
+        <% for(var i=0; i<data.length; i++) {%>
           <li class="client">
-            <span><%= adresse[i].fichier %></span>
-            <span><%= adresse[i].provinces %></span>
-            <span><%= adresse[i].collection %></span>
-            <span><%= adresse[i].ajouter %></span>
-            <span><%= adresse[i].detruire %></span>
-            <span><%= adresse[i].ajouterPlusieurs %></span>
+            <span><%= data[i].code %></span>
+            <span><%= data[i].nom %></span>
+            <span><%= data[i].capital %></span>
           </li>
         <% } %>
 		  </table>
