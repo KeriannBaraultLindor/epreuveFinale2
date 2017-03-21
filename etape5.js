@@ -54,7 +54,7 @@ if (err) return console.log(err)
 app.get('/detruire', (req, res) => {
  var id = req.params.id
  console.log(id)
- db.collection('provinces').insertOne({"code":"QC","nom":"Québec","capital":Math.floor(Math.random() * 100) + 100, "_id": ObjectID(req.params.id)}, (err, resultat) => {
+ db.collection('provinces').remove({}, (err, resultat) => {
 
 if (err) return console.log(err)
  res.redirect('/')  // redirige vers la route qui affiche la collection
