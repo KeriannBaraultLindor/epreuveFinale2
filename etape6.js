@@ -46,8 +46,6 @@ app.get('/collection',  (req, res) => {
     res.render('index.ejs', {provinces: resultat})//récupère les données du ul provinces
 
     }) 
-    
-
 })
 
 app.get('/',  (req, res) => {
